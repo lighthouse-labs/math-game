@@ -3,7 +3,6 @@ class MathQuestion {
   constructor() {
     this.number1 = this.randomNumber();
     this.number2 = this.randomNumber();
-    this.answer = this.number1 + this.number2;
   }
 
   randomNumber() {
@@ -15,11 +14,29 @@ class MathQuestion {
   }
 
   questionText() {
-    return `What is ${this.number1} + ${this.number2}?`;
+    return "";
   }
 }
 
+class AddQuestion extends MathQuestion {
+  questionText() {
+    return `What is ${this.number1} + ${this.number2}?`;
+  }
 
+  get answer() {
+    return this.number1 + this.number2;
+  }
+}
+
+class MinusQuestion extends MathQuestion {
+  questionText() {
+    return `What is ${this.number1} - ${this.number2}?`;
+  }
+
+  get answer() {
+    return this.number1 - this.number2;
+  }
+}
 
 class Player {
   constructor() {
@@ -71,7 +88,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // Set the text of the question element
   // Clear the answer form element
   function setupNewQuestion() {
-    question = new MathQuestion();
+    question = new MinusQuestion();
     questionElement.innerText = question.questionText();
     answerElement.value = "";
   }
